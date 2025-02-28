@@ -8,7 +8,8 @@
     <!-- Meta Data -->
     <meta charset="UTF-8" />
     <meta name="author" content="Mohamed El Amine Kherroubi">
-    <meta name="description" content="A simple color lighten/darken tool application built with HTML, CSS and vanilla JavaScript.">
+    <meta name="description"
+        content="A simple color lighten/darken tool application built with HTML, CSS and vanilla JavaScript.">
     <meta name="keywords" content="JavaScript, Color tool, HEX, RGB, Lighten, Darken">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -36,20 +37,22 @@
 
         <!-- Lightness Slider -->
         <div class="flex gap-2 w-fit">
-            <input id="slider" type="range" min="0" max="100" value="50" class="">
-            <label id="slider-label" for="slider">0%</label>
+            <input id="slider" type="range" min="0" max="200" value="100" class="">
+            <label id="slider-label" for="slider">100%</label>
         </div>
 
         <!-- Color Box -->
         <div class="w-full">
             <label for="input-color">Color</label>
-            <div id="input-color" class="flex items-center justify-center h-20 font-light border-2 cursor-pointer">Copy Hex Code</div>
+            <div id="input-color" class="flex items-center justify-center h-20 font-light border-2">
+            </div>
         </div>
 
         <!-- Altered Color Box -->
         <div class="w-full">
-            <label for="altered-color">Altered Color</label>
-            <div id="altered-color" class="flex items-center justify-center h-20 font-light border-2 cursor-pointer">Copy Hex Code</div>
+            <label id="altered-color-label" for="altered-color">Altered Color</label>
+            <div id="altered-color" class="flex items-center justify-center h-20 font-light border-2 cursor-pointer">
+                Copy Hex Code</div>
         </div>
     </div>
 

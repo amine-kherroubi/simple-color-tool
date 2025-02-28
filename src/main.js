@@ -1,7 +1,10 @@
+'use strict'
+
 // DOM elements declarations
 const hexInput = window.document.getElementById('hex-input');
 const inputColor = window.document.getElementById('input-color');
 const alteredColor = window.document.getElementById('altered-color');
+const alteredColorLabel = window.document.getElementById('altered-color-label');
 const slider = window.document.getElementById('slider');
 const sliderLabel = window.document.getElementById('slider-label');
 
@@ -16,11 +19,25 @@ hexInput.addEventListener('keyup', () => {
         inputColor.style.backgroundColor = '#ffffff';
         alteredColor.style.backgroundColor = '#ffffff';
     }
+
+    slider.value = 100;
+    sliderLabel.textContent = "100%";
 });
 
 slider.addEventListener('input', () => {
-    sliderLabel.innerText = `${slider.value}%`
-    alteredColor.style.backgroundColor = alterColor(hexInput.value, slider.value);
+    sliderLabel.textContent = `${slider.value}%`
+
+    if (isValidHex(hexInput.value)) {
+        const alteredHex = alterColor(hexInput.value, slider.value);
+        alteredColor.style.backgroundColor = alteredHex;
+        alteredColorLabel.innerText = `Altered Color: ${alteredHex}`
+    }
+});
+
+alteredColor.addEventListener('click', () => {
+    if (isValidHex(hexInput.value)) {
+        navigator.clipboard.writeText(alterColor(hexInput.value, slider.value));
+    }
 });
 
 // Color manipulation functions
@@ -47,20 +64,21 @@ const convertHexToRGB = hex => {
 const convertRGBtoHex = ({ r, g, b } = {}) => {
     if ([r, g, b].every(color => Number.isInteger(color) && color >= 0 && color < 256)) {
         return '#' + r.toString(16).padStart(2, '0')
-        + g.toString(16).padStart(2, '0')
-        + b.toString(16).padStart(2, '0');
+            + g.toString(16).padStart(2, '0')
+            + b.toString(16).padStart(2, '0');
     } else return null;
 };
 
-const alterColor = (hex, percentage) => {
-    if (isValidHex(hex) &&  Number.isInteger(percentage) && percentage >= 0 && percentage <= 100) {
-        const {r, g, b} = convertHexToRGB(hex);
-        const amount = Math.floor((percentage/100) * 255);
+const increaseWith0To255 = (number, amount) => Math.min(255, Math.max(0, number + amount));
 
-        const alteredR = r + amount;
-        const alteredG = g + amount;
-        const alteredB = b + amount;
+const alterColor = (hex, value) => {
+    const { r, g, b } = convertHexToRGB(hex);
 
-        return convertRGBtoHex({R: alteredR, g: alteredG, b: alteredB});
-    } else return null;
+    const amount = Math.floor(((value - 100) / 100) * 255);
+
+    const alteredR = increaseWith0To255(r, amount);
+    const alteredG = increaseWith0To255(g, amount);
+    const alteredB = increaseWith0To255(b, amount);
+
+    return convertRGBtoHex({ r: alteredR, g: alteredG, b: alteredB });
 };
