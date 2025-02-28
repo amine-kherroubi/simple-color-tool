@@ -19,9 +19,11 @@ hexInput.addEventListener('keyup', () => {
     if (isValidHex(hex)) {
         inputColor.style.backgroundColor = hex;
         alteredColor.style.backgroundColor = hex;
+        alteredColorLabel.innerText = `Altered Color: ${hex}`;
     } else {
         inputColor.style.backgroundColor = '#ffffff';
         alteredColor.style.backgroundColor = '#ffffff';
+        alteredColorLabel.innerText = 'Altered Color: #ffffff';
     }
 
     slider.value = 100;
