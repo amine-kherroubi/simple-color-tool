@@ -8,13 +8,15 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "spellcheck": "cspell **/*"
+    "spellcheck": "cspell **/*",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "cspell": "^8.17.5",
     "eslint": "^9.21.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
     "vite": "^6.2.0"
   },
   "dependencies": {
