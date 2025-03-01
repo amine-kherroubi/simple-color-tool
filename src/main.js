@@ -70,8 +70,8 @@ const convertHexToRGB = hex => {
 
         if (strippedHex.length === 3) {
             strippedHex = strippedHex[0] + strippedHex[0] +
-                          strippedHex[1] + strippedHex[1] +
-                          strippedHex[2] + strippedHex[2];
+                strippedHex[1] + strippedHex[1] +
+                strippedHex[2] + strippedHex[2];
         }
 
         return {
