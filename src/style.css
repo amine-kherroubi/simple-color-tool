@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --font-display: "Sigmar", serif;
-    --font-body: "Noto Sans", serif;
+  --font-display: "Sigmar", serif;
+  --font-body: "Noto Sans", serif;
 }
